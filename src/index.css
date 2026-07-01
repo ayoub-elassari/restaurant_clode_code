@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #0e0b09;
+  --color-charcoal: #17130f;
+  --color-charcoal-light: #221c17;
+  --color-cream: #f7f0e3;
+  --color-cream-dim: #e8dcc4;
+  --color-gold: #c9a24b;
+  --color-gold-light: #e2c583;
+  --color-gold-dark: #9c7a30;
+  --color-wine: #7a1f2b;
+  --color-wine-light: #9c2e3b;
+
+  --animate-fade-up: fade-up 0.8s ease forwards;
+  --animate-fade-in: fade-in 1s ease forwards;
+  --animate-marquee: marquee 28s linear infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-ink text-cream font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-cream;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(120deg, #9c7a30, #e2c583 45%, #c9a24b 75%, #9c7a30);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .divider-ornament {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .divider-ornament::before,
+  .divider-ornament::after {
+    content: "";
+    height: 1px;
+    width: 2.5rem;
+    background: linear-gradient(90deg, transparent, var(--color-gold));
+  }
+
+  .divider-ornament::after {
+    background: linear-gradient(90deg, var(--color-gold), transparent);
+  }
+}
+
+/* Custom scrollbar for a more premium feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dark);
+  border-radius: 999px;
+}
